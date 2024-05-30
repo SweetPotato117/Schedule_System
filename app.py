@@ -1,29 +1,56 @@
-from flask import Flask, render_template,url_for
-from flask_sqlalchemy import SQLAlchemy
-from flask_login import UserMixin
-
+from flask import Flask, render_template,url_for,request,session,redirect,g
+import os
+from flask_mysqldb import MySQL
 
 app = Flask(__name__)
-db = SQLAlchemy(app)
-app.config['SQLALCHEMY_DATABASE_URL'] = 'sqlite:///database.db'
-app.config['SECRET_KEY'] = '12345'
 
-class User(db.Model, UserMixin):
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(20), nullable=False)
-    password = db.Column(db.String(80), nullable=False)
+app.secret_key = os.urandom(24)
 
+app.config['MYSQL_HOST'] = "localhost"
+app.config['MYSQL_USER'] = "root"
+app.config['MYSQL_PASSWORD'] = ""
+app.config['MYSQL_DB'] = "website"
+
+mysql = MySQL(app)
+
+
+
+
+
+
+#routes
 @app.route('/')
 def home():
     return render_template('home.html')
 
 @app.route('/login')
 def login():
-    return render_template('login.html')
+    cur = mysql.connection.cursor()
 
-@app.route('/register')
+    users = cur.execute("SELECT * FROM users")
+    if users > 0:
+        userDetails = cur.fetchall()
+    
+    return render_template('login.html', userDetails = users)
+
+
+@app.route('/register', methods=['POST', 'GET'])
 def register():
+    if request.method == 'POST':
+        id = request.form['id']
+        username = request.form['username']
+        password = request.form['password']
+
+        cur = mysql.connection.cursor()
+
+        cur.execute("INSERT INTO users (id, username, password) VALUES (%s, %s, %s)", (id, username, password))
+
+        mysql.connection.commit() 
+
+        cur.close()
+
     return render_template('register.html')
+
 
 if __name__ == '__main__':
     app.run(debug=True)
