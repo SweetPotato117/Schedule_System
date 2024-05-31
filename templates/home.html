@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+    <style>
+        body {
+            background-color: #2ecc71; /* emerald */
+        }
+
+        a {
+            display: block;
+            margin-bottom: 10px;
+            text-decoration: none;
+            color: #ffffff; /* white */
+            font-weight: bold;
+            text-align: center;
+            padding: 10px 20px;
+            border-radius: 5px;
+            background-color: #007bff; /* blue */
+            border: none;
+            width: 100px;
+            box-sizing: border-box;
+            margin: 0 auto;
+        }
+
+        a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Home Page</h1>
+
+    <a href="{{url_for('login')}}">Admin</a> <br>
+    <a href="{{url_for('login')}}">Student</a> <br>
+
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>register</title>
+</head>
+
+<body>
+    <h1>Register page</h1>
+    <form action="/register" method="post">
+        <input type="number" name="id" placeholder="id"/>
+        <input type="text" name="username" placeholder="username"/>
+        <input type="text" name="password" placeholder="password"/>
+        <input type="submit" value="Submit">
+    </form>
+    <a href="{{url_for('login')}}">Already have an account? Login</a> <br>
+</body>
+</html>
