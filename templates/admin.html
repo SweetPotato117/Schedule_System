@@ -5,7 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
+<form action="/admin" method="POST">
+        
+    <label for="day">Day:</label><br>
+    <input type="text" id="day" name="day" required><br><br>
+
+    <label for="subject">Subject:</label><br>
+    <input type="text" id="subject" name="subject" required><br><br>
+
+    <label for="instructor">Instructor:</label><br>
+    <input type="text" id="instructor" name="instructor" required><br><br>
+
+    <label for="time_stamp1">Time Range (Beginning):</label><br>
+    <input type="text" id="time" name="time_stamp1" required><br><br>
+    
+    <label for="time_stamp2">Time Range (End):</label><br>
+    <input type="text" id="time" name="time_stamp2" required><br><br>
+
+    <label for="time_marker">Time Marker:</label><br>
+    <input type="radio" name="time_marker" value="am" required>AM<br><br>
+    <input type="radio" name="time_marker" value="pm" required>PM<br><br>
+
+    <label for="room">Room:</label><br>
+    <input type="text" id="room" name="room" required><br><br>
+    <input type="submit" value="Submit">
+</form>
+
 <body>
-    <h1>This is the admin page</h1>
+    
 </body>
 </html>
